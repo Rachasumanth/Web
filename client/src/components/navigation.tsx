@@ -59,6 +59,13 @@ export function Navigation() {
               Technology
             </button>
             <button 
+              onClick={() => scrollToSection('partners')}
+              className="text-slate-600 hover:text-red-600 transition-colors"
+              data-testid="nav-partners"
+            >
+              Partners
+            </button>
+            <button 
               onClick={() => scrollToSection('team')}
               className="text-slate-600 hover:text-red-600 transition-colors"
               data-testid="nav-team"
@@ -110,6 +117,13 @@ export function Navigation() {
                 data-testid="mobile-nav-technology"
               >
                 Technology
+              </button>
+              <button 
+                onClick={() => scrollToSection('partners')}
+                className="text-slate-600 hover:text-red-600 transition-colors text-left px-4 py-2"
+                data-testid="mobile-nav-partners"
+              >
+                Partners
               </button>
               <button 
                 onClick={() => scrollToSection('team')}
