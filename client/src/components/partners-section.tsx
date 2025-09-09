@@ -1,5 +1,5 @@
 import React from 'react';
-import { SiGithub, SiJetbrains, SiNotion } from 'react-icons/si';
+import { SiGithub, SiJetbrains, SiNotion, SiEducative, SiTermius, SiZyte, SiNamecheap } from 'react-icons/si';
 
 export function PartnersSection() {
   const partners = [
@@ -10,12 +10,12 @@ export function PartnersSection() {
     },
     {
       name: 'Name.com',
-      icon: null,
+      icon: SiNamecheap,
       description: 'Domain registration and DNS'
     },
     {
       name: 'Educative',
-      icon: null,
+      icon: SiEducative,
       description: 'Interactive learning platform'
     },
     {
@@ -30,7 +30,7 @@ export function PartnersSection() {
     },
     {
       name: 'Termius',
-      icon: null,
+      icon: SiTermius,
       description: 'SSH client and terminal'
     },
     {
@@ -40,7 +40,7 @@ export function PartnersSection() {
     },
     {
       name: 'Zyte',
-      icon: null,
+      icon: SiZyte,
       description: 'Web scraping platform'
     }
   ];
@@ -63,11 +63,11 @@ export function PartnersSection() {
               data-testid={`partner-${partner.name.toLowerCase().replace('.', '-')}`}
             >
               {partner.icon ? (
-                <partner.icon className="w-12 h-12 text-slate-600 mb-3" />
+                <partner.icon className="w-12 h-12 text-slate-700 mb-3 hover:text-red-600 transition-colors" />
               ) : (
-                <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mb-3">
-                  <span className="text-white font-bold text-xs">
-                    {partner.name.split(/[\s.]/)[0].substring(0, 3).toUpperCase()}
+                <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mb-3 hover:scale-105 transition-transform">
+                  <span className="text-white font-bold text-sm">
+                    IS
                   </span>
                 </div>
               )}
