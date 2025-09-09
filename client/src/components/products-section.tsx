@@ -25,9 +25,9 @@ export function ProductsSection() {
               </div>
               
               <p className="text-lg text-slate-600 mb-8">
-                An interactive 2D AI teacher that adapts to every learner's pace and style. 
-                With live animations, intelligent quizzes, and advanced AI reasoning, 
-                CocoMam makes learning engaging for children and adults alike.
+                A revolutionary 24/7 interactive 2D teacher that brings education to life through Live2D animations, 
+                real-time responses, and personalized learning experiences. CocoMam uses advanced AI to create 
+                dynamic teaching sessions that adapt to each student's learning style and pace.
               </p>
 
               <div className="space-y-6 mb-8">
@@ -36,8 +36,8 @@ export function ProductsSection() {
                     <Play className="w-4 h-4 text-red-600" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-slate-900 mb-1">Live Animations</h4>
-                    <p className="text-slate-600">Dynamic visual storytelling that brings concepts to life</p>
+                    <h4 className="font-semibold text-slate-900 mb-1">Live2D Character Animations</h4>
+                    <p className="text-slate-600">Interactive teacher with expressions, gestures, and real-time lip sync</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
@@ -45,8 +45,8 @@ export function ProductsSection() {
                     <Brain className="w-4 h-4 text-red-600" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-slate-900 mb-1">AI Reasoning</h4>
-                    <p className="text-slate-600">Advanced logic that adapts explanations to individual understanding</p>
+                    <h4 className="font-semibold text-slate-900 mb-1">Dynamic Teaching & Reasoning</h4>
+                    <p className="text-slate-600">Responds to questions in real-time with animated explanations and step-by-step breakdowns</p>
                   </div>
                 </div>
                 <div className="flex items-start space-x-4">
@@ -54,29 +54,22 @@ export function ProductsSection() {
                     <HelpCircle className="w-4 h-4 text-red-600" />
                   </div>
                   <div>
-                    <h4 className="font-semibold text-slate-900 mb-1">Interactive Quizzes</h4>
-                    <p className="text-slate-600">Personalized assessments that reinforce learning objectives</p>
+                    <h4 className="font-semibold text-slate-900 mb-1">Multi-Modal Learning</h4>
+                    <p className="text-slate-600">Voice interaction, homework scanning, and document analysis for personalized teaching</p>
                   </div>
                 </div>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button 
-                  asChild
-                  className="bg-gradient-primary text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg transition-all"
-                  data-testid="try-cocomam-button"
-                >
-                  <a href="https://cocomam.app" target="_blank" rel="noopener noreferrer">
-                    Try CocoMam.app
-                  </a>
-                </Button>
-                <Button 
-                  variant="outline"
-                  className="border-2 border-slate-300 text-slate-700 px-6 py-3 rounded-full font-semibold hover:border-red-600 hover:text-red-600 transition-all"
-                  data-testid="learn-more-button"
-                >
-                  Learn More
-                </Button>
+              <div className="bg-gradient-primary/10 border border-red-200 rounded-xl p-6">
+                <div className="flex items-center space-x-3 mb-3">
+                  <div className="w-3 h-3 bg-orange-500 rounded-full animate-pulse"></div>
+                  <span className="text-sm font-semibold text-slate-700 uppercase tracking-wide">In Development</span>
+                </div>
+                <p className="text-slate-600 text-sm leading-relaxed">
+                  CocoMam.app is currently being developed with cutting-edge Live2D technology and AI capabilities. 
+                  Our team is working to create the most advanced interactive 2D teacher that will revolutionize 
+                  personalized education for students of all ages.
+                </p>
               </div>
             </div>
             <div className="bg-gradient-primary p-12 flex items-center justify-center">
@@ -93,18 +86,18 @@ export function ProductsSection() {
         <div className="grid md:grid-cols-3 gap-8">
           <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
             <Users className="w-12 h-12 text-red-600 mb-4" />
-            <h4 className="text-xl font-semibold text-slate-900 mb-3">For All Ages</h4>
-            <p className="text-slate-600">Designed to engage learners from children to adults with age-appropriate content and interactions.</p>
+            <h4 className="text-xl font-semibold text-slate-900 mb-3">24/7 Availability</h4>
+            <p className="text-slate-600">Always available interactive teacher that provides real-time explanations and responds to questions instantly.</p>
           </div>
           <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
             <Smartphone className="w-12 h-12 text-red-600 mb-4" />
-            <h4 className="text-xl font-semibold text-slate-900 mb-3">Multi-Platform</h4>
-            <p className="text-slate-600">Available across devices with seamless synchronization and offline capabilities.</p>
+            <h4 className="text-xl font-semibold text-slate-900 mb-3">Voice & Visual Input</h4>
+            <p className="text-slate-600">Voice interactions, homework scanning, and document analysis for comprehensive learning support.</p>
           </div>
           <div className="bg-white p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow">
             <TrendingUp className="w-12 h-12 text-red-600 mb-4" />
-            <h4 className="text-xl font-semibold text-slate-900 mb-3">Progress Tracking</h4>
-            <p className="text-slate-600">Comprehensive analytics and insights to monitor learning progress and achievements.</p>
+            <h4 className="text-xl font-semibold text-slate-900 mb-3">Adaptive Learning</h4>
+            <p className="text-slate-600">Studies student psychology and personalizes teaching styles for optimal learning outcomes.</p>
           </div>
         </div>
       </div>
