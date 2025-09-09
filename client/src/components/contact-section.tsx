@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
-import { Mail, User, Handshake } from 'lucide-react';
+import { Mail, User, Handshake, Phone, MapPin } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -103,12 +103,31 @@ export function ContactSection() {
               </div>
               <div className="flex items-start space-x-4">
                 <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mt-1">
-                  <Handshake className="w-6 h-6 text-red-600" />
+                  <Phone className="w-6 h-6 text-red-600" />
                 </div>
                 <div>
-                  <h4 className="font-semibold text-slate-900 mb-1">Partnership Opportunities</h4>
-                  <p className="text-slate-600 mb-1">Looking to integrate AI into education?</p>
-                  <p className="text-sm text-slate-500">Let's explore collaboration possibilities</p>
+                  <h4 className="font-semibold text-slate-900 mb-1">Phone Contact</h4>
+                  <p className="text-slate-600 mb-1">
+                    <a 
+                      href="tel:+918331827178" 
+                      className="hover:text-red-600 transition-colors"
+                      data-testid="phone-contact"
+                    >
+                      +91 8331827178
+                    </a>
+                  </p>
+                  <p className="text-sm text-slate-500">Direct line for immediate assistance</p>
+                </div>
+              </div>
+              <div className="flex items-start space-x-4">
+                <div className="w-12 h-12 bg-red-100 rounded-lg flex items-center justify-center mt-1">
+                  <MapPin className="w-6 h-6 text-red-600" />
+                </div>
+                <div>
+                  <h4 className="font-semibold text-slate-900 mb-1">Our Location</h4>
+                  <p className="text-slate-600 mb-1">Balajinagar, Kapra</p>
+                  <p className="text-slate-600 mb-1">Telangana State, India 500087</p>
+                  <p className="text-sm text-slate-500">Visit us for partnerships and collaboration</p>
                 </div>
               </div>
             </div>
