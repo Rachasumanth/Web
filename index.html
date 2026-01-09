@@ -3,312 +3,591 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Retro Highway Racer</title>
+    <title>Strawberry Studios | AI & Technology</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&display=swap" rel="stylesheet">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
     <style>
-        body {
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --primary-red: #FF2E63; /* Tech/Neon Red */
+            --dark-red: #a81d40;
+            --charcoal: #121212;
+            --off-black: #1E1E1E;
+            --milk-white: #F5F5F5;
+            --gray-text: #B0B0B0;
+            --font-main: 'League Spartan', sans-serif;
+            --transition: all 0.3s ease;
+        }
+
+        * {
             margin: 0;
             padding: 0;
-            background-color: #222;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            justify-content: center;
+            box-sizing: border-box;
+            font-family: var(--font-main);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--charcoal);
+            color: var(--milk-white);
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3 {
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+        
+        p {
+            line-height: 1.6;
+            color: var(--gray-text);
+        }
+
+        .highlight {
+            color: var(--primary-red);
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-red);
+            color: var(--milk-white);
+            box-shadow: 0 0 15px rgba(255, 46, 99, 0.4);
+        }
+
+        .btn-primary:hover {
+            background-color: transparent;
+            border-color: var(--primary-red);
+            color: var(--primary-red);
+            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(255, 46, 99, 0.6);
+        }
+
+        .btn-playstore {
+            background-color: var(--milk-white);
+            color: var(--charcoal);
+            display: inline-flex;
             align-items: center;
+            gap: 10px;
+        }
+
+        .btn-playstore:hover {
+            background-color: var(--primary-red);
+            color: var(--milk-white);
+        }
+
+        /* --- HEADER --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 20px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(18, 18, 18, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .logo img {
+            height: 40px; /* Adjust based on your SVG aspect ratio */
+            width: auto;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            font-weight: 500;
+            font-size: 1.1rem;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--primary-red);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Mobile Menu */
+        .menu-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
             height: 100vh;
-            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 5%;
+            background: radial-gradient(circle at center, #1a1a1a 0%, var(--charcoal) 70%);
+            position: relative;
             overflow: hidden;
         }
 
-        #gameContainer {
-            position: relative;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-            border: 4px solid #444;
-            border-radius: 8px;
+        /* Abstract Tech Background Element */
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: var(--primary-red);
+            filter: blur(200px);
+            opacity: 0.15;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            animation: pulse 6s infinite alternate;
         }
 
-        canvas {
-            background-color: #333;
+        @keyframes pulse {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.1; }
+            100% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.2; }
+        }
+
+        .hero-content {
+            z-index: 1;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+
+        /* --- ABOUT SECTION --- */
+        .about {
+            padding: 100px 5%;
+            background-color: var(--off-black);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 50px;
+        }
+
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .about-text h2 span {
+            color: var(--primary-red);
+        }
+
+        .about-visual {
+            flex: 1;
+            min-width: 300px;
+            height: 400px;
+            background: linear-gradient(45deg, #2a2a2a, #1a1a1a);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(255, 46, 99, 0.2);
+            position: relative;
+        }
+        
+        /* Placeholder for company banner if SVG fails */
+        .about-visual img {
+            width: 80%;
+            height: auto;
+        }
+
+        /* --- PROJECTS SECTION --- */
+        .projects {
+            padding: 100px 5%;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+
+        .project-card {
+            background-color: var(--off-black);
+            border-radius: 30px;
+            overflow: hidden;
+            border: 1px solid #333;
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            border-color: var(--primary-red);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .project-banner {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-bottom: 1px solid #333;
+        }
+
+        .project-details {
+            padding: 40px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .project-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .app-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .app-logo {
+            width: 80px;
+            height: 80px;
+            border-radius: 20px;
+            object-fit: cover;
+        }
+
+        .screenshots {
+            flex: 1.5;
+            min-width: 300px;
+            display: flex;
+            gap: 15px;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--primary-red) var(--off-black);
+        }
+
+        .screenshots::-webkit-scrollbar {
+            height: 8px;
+        }
+        .screenshots::-webkit-scrollbar-thumb {
+            background-color: var(--primary-red);
+            border-radius: 4px;
+        }
+
+        .screenshots img {
+            height: 300px;
+            border-radius: 12px;
+            border: 1px solid #333;
+        }
+
+        /* --- TEAM / FOUNDER --- */
+        .founder {
+            padding: 100px 5%;
+            background-color: var(--off-black);
+            text-align: center;
+        }
+
+        .founder-card {
+            background: linear-gradient(145deg, #252525, #1a1a1a);
+            display: inline-block;
+            padding: 50px;
+            border-radius: 30px;
+            border-top: 2px solid var(--primary-red);
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .founder-role {
+            color: var(--primary-red);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
             display: block;
         }
 
-        .ui-layer {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: rgba(0, 0, 0, 0.7);
-            text-align: center;
-            z-index: 10;
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        h1 {
-            font-size: 40px;
-            margin: 0 0 20px 0;
-            color: #ff3e3e;
-            text-shadow: 2px 2px #000;
-            font-style: italic;
-        }
-
-        p {
-            font-size: 18px;
-            color: #ddd;
-        }
-
-        button {
-            padding: 15px 30px;
-            font-size: 20px;
-            background-color: #ff3e3e;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: transform 0.1s;
-            font-weight: bold;
+        .founder-email {
             margin-top: 20px;
+            display: inline-block;
+            padding: 10px 20px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 8px;
+            font-family: monospace;
         }
 
-        button:hover {
-            transform: scale(1.05);
-            background-color: #ff5c5c;
+        /* --- CONTACT & FOOTER --- */
+        footer {
+            padding: 80px 5% 30px;
+            background-color: #000;
+            border-top: 1px solid #222;
         }
 
-        #scoreBoard {
-            position: absolute;
-            top: 10px;
-            left: 10px;
-            font-size: 20px;
-            font-weight: bold;
-            color: white;
-            z-index: 5;
-            background: rgba(0,0,0,0.5);
-            padding: 5px 10px;
-            border-radius: 4px;
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h4 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--milk-white);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: var(--gray-text);
+        }
+
+        .contact-item i {
+            color: var(--primary-red);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid #222;
+            color: #555;
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.8rem; }
+            
+            .menu-toggle { display: block; color: var(--milk-white); }
+            
+            nav {
+                position: fixed;
+                top: 80px;
+                right: -100%;
+                width: 100%;
+                height: calc(100vh - 80px);
+                background: var(--charcoal);
+                flex-direction: column;
+                justify-content: center;
+                transition: 0.4s;
+                border-top: 1px solid #333;
+            }
+
+            nav.active { right: 0; }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                padding: 40px 0;
+            }
+            
+            .project-details { padding: 20px; }
+            .screenshots img { height: 250px; }
         }
     </style>
 </head>
 <body>
 
-    <div id="gameContainer">
-        <canvas id="gameCanvas" width="400" height="600"></canvas>
-        <div id="scoreBoard">Score: 0</div>
-        
-        <div id="startScreen" class="ui-layer">
-            <h1>HIGHWAY RUN</h1>
-            <p>Use <b>Left/Right Arrows</b> to move.</p>
-            <p>Avoid the other cars!</p>
-            <button onclick="startGame()">START ENGINE</button>
+    <header>
+        <a href="#" class="logo">
+            <img src="images/companylogo.svg" alt="Strawberry Studios Logo">
+        </a>
+        <div class="menu-toggle"><i class="fas fa-bars"></i></div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero" id="home">
+        <div class="hero-content" data-aos="fade-up">
+            <h1>We Forge <span class="highlight">Artificial Intelligence</span></h1>
+            <p>Strawberry Studios bridges the gap between complex algorithms and everyday utility. Designing the future from Hyderabad, India.</p>
+            <a href="#projects" class="btn btn-primary">View Our Work</a>
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-visual" data-aos="fade-right">
+            <img src="images/companybanner.svg" alt="Strawberry Studios AI Visualization">
+        </div>
+        <div class="about-text" data-aos="fade-left">
+            <h2>Not Just Code.<br> <span class="highlight">Pure Intelligence.</span></h2>
+            <p>Strawberry Studios is an AI-first technology company committed to innovation. Unlike traditional software houses, we focus on adaptive systems and machine learning models that evolve.</p>
+            <br>
+            <p>Founded by <strong>Racha Sumanth</strong>, our mission is to deploy intelligent tools that simplify digital life, securely and efficiently.</p>
+        </div>
+    </section>
+
+    <section class="projects" id="projects">
+        <div class="section-header" data-aos="fade-up">
+            <h2>Featured Projects</h2>
+            <p>Deploying smart solutions to the real world.</p>
         </div>
 
-        <div id="gameOverScreen" class="ui-layer hidden">
-            <h1 style="color:white;">CRASHED!</h1>
-            <p id="finalScore">Score: 0</p>
-            <button onclick="startGame()">TRY AGAIN</button>
+        <div class="project-card" data-aos="zoom-in-up">
+            <img src="images/appbanner.jpg" alt="Find My File Banner" class="project-banner">
+            
+            <div class="project-details">
+                <div class="project-info">
+                    <div class="app-header">
+                        <img src="images/applogo.jpg" alt="Find My File Logo" class="app-logo">
+                        <div>
+                            <h3>Find My File</h3>
+                            <span style="color: var(--primary-red); font-size: 0.9rem;">AI Utility Tool</span>
+                        </div>
+                    </div>
+                    <p>Stop searching, start finding. An intelligent file management assistant that helps you locate lost documents and media instantly using smart indexing.</p>
+                    <br>
+                    <a href="https://play.google.com/store/apps/details?id=tech.strawberrystudios.findmyfile" target="_blank" class="btn btn-playstore">
+                        <i class="fab fa-google-play"></i> Get it on Play Store
+                    </a>
+                </div>
+
+                <div class="screenshots">
+                    <img src="images/01.png" alt="App Screen 1">
+                    <img src="images/02.png" alt="App Screen 2">
+                    <img src="images/03.png" alt="App Screen 3">
+                    <img src="images/04.png" alt="App Screen 4">
+                    <img src="images/05.png" alt="App Screen 5">
+                </div>
+            </div>
         </div>
-    </div>
+    </section>
 
-<script>
-    const canvas = document.getElementById('gameCanvas');
-    const ctx = canvas.getContext('2d');
-    const scoreElement = document.getElementById('scoreBoard');
-    const startScreen = document.getElementById('startScreen');
-    const gameOverScreen = document.getElementById('gameOverScreen');
-    const finalScoreElement = document.getElementById('finalScore');
+    <section class="founder">
+        <div class="founder-card" data-aos="flip-up">
+            <span class="founder-role">Founder & CEO</span>
+            <h3>Racha Sumanth</h3>
+            <p style="margin-top: 15px;">Driving the vision of Strawberry Studios towards a smarter, automated future.</p>
+            <a href="mailto:founder@strawberrystudios.tech" class="founder-email">founder@strawberrystudios.tech</a>
+        </div>
+    </section>
 
-    // Game Variables
-    let animationId;
-    let score = 0;
-    let gameSpeed = 5;
-    let gameRunning = false;
-    let keys = { ArrowLeft: false, ArrowRight: false };
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Strawberry Studios</h4>
+                <p>Innovating in AI & Software Development.</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>Contact</h4>
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <a href="mailto:info@strawberrystudios.tech">info@strawberrystudios.tech</a>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <span>Hyderabad, Telangana, India</span>
+                </div>
+            </div>
 
-    // Car Dimensions
-    const carWidth = 50;
-    const carHeight = 90;
-
-    // Player Object
-    let player = {
-        x: canvas.width / 2 - carWidth / 2,
-        y: canvas.height - 120,
-        width: carWidth,
-        height: carHeight,
-        color: '#ff3e3e' // Red
-    };
-
-    // Enemy Array
-    let enemies = [];
-    
-    // Road Markings
-    let lineOffset = 0;
-
-    // Input Handling
-    document.addEventListener('keydown', (e) => {
-        if(keys.hasOwnProperty(e.code)) keys[e.code] = true;
-    });
-    
-    document.addEventListener('keyup', (e) => {
-        if(keys.hasOwnProperty(e.code)) keys[e.code] = false;
-    });
-
-    // Helper: Draw a stylized car
-    function drawCar(x, y, color) {
-        // Shadow
-        ctx.fillStyle = "rgba(0,0,0,0.3)";
-        ctx.fillRect(x + 5, y + 5, carWidth, carHeight);
-
-        // Tires
-        ctx.fillStyle = "#000";
-        ctx.fillRect(x - 2, y + 10, 6, 15); // Top Left
-        ctx.fillRect(x + carWidth - 4, y + 10, 6, 15); // Top Right
-        ctx.fillRect(x - 2, y + carHeight - 25, 6, 15); // Bottom Left
-        ctx.fillRect(x + carWidth - 4, y + carHeight - 25, 6, 15); // Bottom Right
-
-        // Body
-        ctx.fillStyle = color;
-        ctx.fillRect(x, y, carWidth, carHeight);
+            <div class="footer-col">
+                <h4>Legal</h4>
+                <ul>
+                    <li><a href="#" style="color: #666;">Privacy Policy</a></li>
+                    <li><a href="#" style="color: #666;">Terms of Service</a></li>
+                </ul>
+            </div>
+        </div>
         
-        // Center Stripe
-        ctx.fillStyle = "rgba(0,0,0,0.1)";
-        ctx.fillRect(x + carWidth/2 - 5, y, 10, carHeight);
+        <div class="copyright">
+            &copy; 2026 Strawberry Studios. All Rights Reserved.
+        </div>
+    </footer>
 
-        // Windshield
-        ctx.fillStyle = "#88ccff";
-        ctx.fillRect(x + 5, y + 20, carWidth - 10, 15); // Front
-        ctx.fillStyle = "#5588aa";
-        ctx.fillRect(x + 5, y + 60, carWidth - 10, 10); // Back
-    }
-
-    function spawnEnemy() {
-        const laneWidth = (canvas.width - 40) / 3; // 3 "virtual" lanes
-        // Pick a random lane center
-        const laneIndex = Math.floor(Math.random() * 3);
-        const spawnX = 20 + (laneIndex * laneWidth) + (laneWidth/2 - carWidth/2);
-        
-        // Random color
-        const colors = ['#3eff3e', '#3e3eff', '#ffff3e', '#ff3eff'];
-        const randomColor = colors[Math.floor(Math.random() * colors.length)];
-
-        enemies.push({
-            x: spawnX,
-            y: -100,
-            width: carWidth,
-            height: carHeight,
-            speed: gameSpeed * 0.8 + Math.random() * 2, // Slight speed variation
-            color: randomColor
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize Animation on Scroll
+        AOS.init({
+            duration: 1000,
+            once: true
         });
-    }
 
-    function update() {
-        if (!gameRunning) return;
+        // Mobile Menu Toggle Logic
+        const menuToggle = document.querySelector('.menu-toggle');
+        const nav = document.querySelector('nav');
+        const navLinks = document.querySelectorAll('nav a');
 
-        // Clear Canvas
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // --- DRAW ROAD ---
-        // Grass
-        ctx.fillStyle = '#2d6a2d';
-        ctx.fillRect(0, 0, 20, canvas.height);
-        ctx.fillRect(canvas.width - 20, 0, 20, canvas.height);
-        
-        // Road surface
-        ctx.fillStyle = '#555';
-        ctx.fillRect(20, 0, canvas.width - 40, canvas.height);
-
-        // Moving Lines
-        ctx.fillStyle = '#fff';
-        lineOffset += gameSpeed;
-        if (lineOffset >= 60) lineOffset = 0;
-
-        for (let i = -60; i < canvas.height; i += 60) {
-            // Left lane divider
-            ctx.fillRect(canvas.width / 3, i + lineOffset, 4, 30);
-            // Right lane divider
-            ctx.fillRect((canvas.width / 3) * 2, i + lineOffset, 4, 30);
-        }
-
-        // --- PLAYER MOVEMENT ---
-        if (keys.ArrowLeft && player.x > 25) {
-            player.x -= 7;
-        }
-        if (keys.ArrowRight && player.x < canvas.width - 25 - player.width) {
-            player.x += 7;
-        }
-
-        // --- ENEMIES ---
-        // Spawn controller
-        if (Math.random() < 0.02) { // 2% chance per frame
-            // Prevent overlapping spawns (simple check)
-            let tooClose = false;
-            for(let e of enemies) {
-                if(e.y < 150) tooClose = true;
-            }
-            if(!tooClose) spawnEnemy();
-        }
-
-        enemies.forEach((enemy, index) => {
-            enemy.y += enemy.speed;
-
-            // Draw Enemy
-            drawCar(enemy.x, enemy.y, enemy.color);
-
-            // Collision Detection
-            if (
-                player.x < enemy.x + enemy.width &&
-                player.x + player.width > enemy.x &&
-                player.y < enemy.y + enemy.height &&
-                player.height + player.y > enemy.y
-            ) {
-                endGame();
-            }
-
-            // Remove if off screen and add score
-            if (enemy.y > canvas.height) {
-                enemies.splice(index, 1);
-                score += 10;
-                scoreElement.innerText = "Score: " + score;
-                
-                // Increase difficulty
-                if(score % 100 === 0) gameSpeed += 0.5;
+        menuToggle.addEventListener('click', () => {
+            nav.classList.toggle('active');
+            const icon = menuToggle.querySelector('i');
+            if (nav.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
             }
         });
 
-        // Draw Player
-        drawCar(player.x, player.y, player.color);
-
-        animationId = requestAnimationFrame(update);
-    }
-
-    function startGame() {
-        // Reset state
-        score = 0;
-        gameSpeed = 5;
-        scoreElement.innerText = "Score: 0";
-        player.x = canvas.width / 2 - carWidth / 2;
-        enemies = [];
-        keys = { ArrowLeft: false, ArrowRight: false };
-
-        // UI
-        startScreen.classList.add('hidden');
-        gameOverScreen.classList.add('hidden');
-        
-        gameRunning = true;
-        update();
-    }
-
-    function endGame() {
-        gameRunning = false;
-        cancelAnimationFrame(animationId);
-        finalScoreElement.innerText = "Final Score: " + score;
-        gameOverScreen.classList.remove('hidden');
-    }
-
-</script>
+        // Close menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                nav.classList.remove('active');
+                menuToggle.querySelector('i').classList.remove('fa-times');
+                menuToggle.querySelector('i').classList.add('fa-bars');
+            });
+        });
+    </script>
 </body>
-  </html> 
+    </html>
